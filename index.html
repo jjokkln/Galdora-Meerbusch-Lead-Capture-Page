@@ -132,9 +132,13 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-        url('Hero-background.png') center/cover no-repeat;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.64)),
+        url('Hero-background.png');
+      background-position: center, 50% center;
+      background-size: auto, cover;
+      background-repeat: repeat, no-repeat;
+      background-attachment: scroll, fixed;
     }
 
     .top-split-left {
@@ -152,6 +156,7 @@
     @media (max-width: 960px) {
       .top-split {
         grid-template-columns: 1fr;
+        background-attachment: scroll, scroll;
       }
 
       .top-split-left {
@@ -690,6 +695,107 @@
       margin-bottom: 28px;
     }
 
+    .image-slideshow {
+      min-height: clamp(360px, 72vh, 760px);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--section);
+    }
+
+    .image-slideshow::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.64));
+    }
+
+    .image-slideshow__frame {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: saturate(0.96) contrast(1.02);
+      transform: scale(1.035);
+      animation: galdora-image-slideshow 32s cubic-bezier(.4, 0, .2, 1) infinite;
+      will-change: opacity, transform;
+    }
+
+    .image-slideshow__frame:nth-child(1) {
+      background-image: url('slideshow-assets/17970.png');
+      animation-delay: 0s;
+    }
+
+    .image-slideshow__frame:nth-child(2) {
+      background-image: url('slideshow-assets/23051.png');
+      animation-delay: 4s;
+    }
+
+    .image-slideshow__frame:nth-child(3) {
+      background-image: url('slideshow-assets/27138.png');
+      animation-delay: 8s;
+    }
+
+    .image-slideshow__frame:nth-child(4) {
+      background-image: url('slideshow-assets/41060.png');
+      animation-delay: 12s;
+    }
+
+    .image-slideshow__frame:nth-child(5) {
+      background-image: url('slideshow-assets/63629.png');
+      animation-delay: 16s;
+    }
+
+    .image-slideshow__frame:nth-child(6) {
+      background-image: url('slideshow-assets/81739.png');
+      animation-delay: 20s;
+    }
+
+    .image-slideshow__frame:nth-child(7) {
+      background-image: url('slideshow-assets/84746.png');
+      animation-delay: 24s;
+    }
+
+    .image-slideshow__frame:nth-child(8) {
+      background-image: url('slideshow-assets/9327.png');
+      animation-delay: 28s;
+    }
+
+    @keyframes galdora-image-slideshow {
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(1.035);
+      }
+
+      2.5%,
+      12.5% {
+        opacity: 1;
+      }
+
+      15% {
+        opacity: 0;
+        transform: scale(1.01);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .image-slideshow__frame {
+        animation: none;
+      }
+
+      .image-slideshow__frame:first-child {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
     @media (max-width: 860px) {
 
       .cards,
@@ -879,8 +985,8 @@
           <h2>Jetzt kostenfrei anfragen</h2>
           <p class="form-desc">Gerne auch telefonisch unter:<br><a href="tel:+4921598217570"
               style="color: var(--blue); font-weight: 700; text-decoration: none; white-space: nowrap;">02159 8217570</a><br>
-            Oder per Mail an:<br><a href="mailto:bettercallus@galdora.de"
-              style="color: var(--blue); font-weight: 700; text-decoration: none; white-space: nowrap;">bettercallus@galdora.de</a></p>
+            Oder per Mail an:<br><a href="mailto:bettertrustus@galdora.de"
+              style="color: var(--blue); font-weight: 700; text-decoration: none; white-space: nowrap;">bettertrustus@galdora.de</a></p>
 
           <form id="lead-form">
             <div class="two">
@@ -962,7 +1068,7 @@
             style="display:none;padding:20px;background:#fff0f0;border-left:5px solid #c0392b;border-radius:3px;">
             <p style="font-weight:700;color:#c0392b;margin:0 0 6px;">Fehler beim Senden.</p>
             <p style="color:#374151;margin:0;">Bitte versuchen Sie es erneut oder schreiben Sie uns direkt: <a
-                href="mailto:bettercallus@galdora.de" style="color:#152348;font-weight:700;">bettercallus@galdora.de</a>
+                href="mailto:bettertrustus@galdora.de" style="color:#152348;font-weight:700;">bettertrustus@galdora.de</a>
             </p>
           </div>
         </div>
@@ -1144,6 +1250,17 @@
       </div>
     </section>
 
+    <section class="image-slideshow" aria-label="GALDORA Impressionen">
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+      <span class="image-slideshow__frame" aria-hidden="true"></span>
+    </section>
+
     <section>
       <div class="container">
         <div class="cta-strip">
@@ -1196,14 +1313,14 @@
               </svg>
               <span class="footer-text">02159 8217570</span>
             </a>
-            <a href="mailto:bettercallus@galdora.de" class="footer-contact-item">
+            <a href="mailto:bettertrustus@galdora.de" class="footer-contact-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="footer-icon">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-              <span class="footer-text">bettercallus@galdora.de</span>
+              <span class="footer-text">bettertrustus@galdora.de</span>
             </a>
           </div>
         </div>
