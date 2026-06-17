@@ -806,6 +806,112 @@
       }
     }
 
+    .ref-sub-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+    }
+
+    .ref-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .ref-stars {
+      color: #f59e0b;
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+
+    .ref-quote {
+      font-size: 14.5px;
+      color: var(--text);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    .ref-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ref-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .ref-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .ref-role {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .ref-kunden-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .ref-kunden-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .ref-kunden-quote {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .ref-kunden-company {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .ref-kunden-type {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    @media (max-width: 860px) {
+      .ref-kunden-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 860px) {
 
       .cards,
@@ -1256,6 +1362,61 @@
             <p>Wir identifizieren, interviewen und präsentieren Ihnen ausgewählte Kandidaten. Sie wählen Ihre
               Favoriten - Wir koordinieren die Bewerbungsgespräche.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="referenzen" class="section-muted">
+      <div class="container">
+        <div class="section-head">
+          <h2>Was Kunden &amp; Kandidaten sagen</h2>
+          <p>Echte Erfahrungen &#8211; von Menschen, die wir erfolgreich begleitet haben.</p>
+        </div>
+
+        <p class="ref-sub-label">Kandidatenreferenzen</p>
+        <div class="ref-kunden-grid" style="margin-bottom: 52px;">
+          <div class="ref-card">
+            <div class="ref-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="ref-quote">Durch GALDORA habe ich eine Stelle im Vertriebsinnendienst in Krefeld gefunden. Der Einstieg verlief &#252;ber Zeitarbeit, nach ein paar Monaten wurde ich &#252;bernommen. Die Betreuung war durchweg freundlich und professionell &#8211; eine klare Empfehlung f&#252;r alle, die beruflich weiterkommen m&#246;chten.</p>
+            <div class="ref-author">
+              <div class="ref-avatar">AM</div>
+              <div>
+                <div class="ref-name">Anna M.</div>
+                <div class="ref-role">Kandidatin</div>
+              </div>
+            </div>
+          </div>
+          <div class="ref-card">
+            <div class="ref-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="ref-quote">Mein Ansprechpartner bei GALDORA hat mich bestens auf die Vorstellungsgespr&#228;che beim Kunden vorbereitet. Auch w&#228;hrend meines Arbeitnehmer&#252;berlassungseinsatzes f&#252;hle ich mich sehr gut betreut. GALDORA h&#228;lt als Karrierebegleiter, was es verspricht.</p>
+            <div class="ref-author">
+              <div class="ref-avatar">LB</div>
+              <div>
+                <div class="ref-name">Lisa B.</div>
+                <div class="ref-role">Kandidatin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="ref-sub-label">Kundenreferenzen</p>
+        <div class="ref-kunden-grid">
+          <div class="ref-kunden-card">
+            <div class="ref-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="ref-kunden-quote">Wir arbeiten seit mehreren Jahren mit GALDORA zusammen und sind stets beeindruckt von ihrer Professionalit&#228;t. Besonders sch&#228;tzen wir, dass sie es immer wieder schaffen, unsere offenen Stellen passend zu besetzen. Egal, ob es um tempor&#228;re oder langfristige Positionen geht &#8211; GALDORA ist stets als zuverl&#228;ssiger Partner an unserer Seite. Wir k&#246;nnen GALDORA uneingeschr&#228;nkt weiterempfehlen!</p>
+            <div>
+              <div class="ref-kunden-company">Renommiertes &amp; herstellendes Industrieunternehmen aus Krefeld</div>
+              <div class="ref-kunden-type">Unternehmensreferenz</div>
+            </div>
+          </div>
+          <div class="ref-kunden-card">
+            <div class="ref-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="ref-kunden-quote">Der Austausch mit Ansprechpartnern bei GALDORA ist sehr transparent und zielf&#252;hrend gestaltet. Um unsere Anforderungen zu verstehen, wird sich Zeit genommen. Zugleich sch&#228;tzen wir die Kenntnisse von GALDORA &#252;ber den Kandidatenmarkt. Eine Vielzahl unserer Mitarbeiter am Standort in D&#252;sseldorf haben wir erfolgreich &#252;ber GALDORA rekrutiert.</p>
+            <div>
+              <div class="ref-kunden-company">Internationales Technology-Unternehmen aus D&#252;sseldorf</div>
+              <div class="ref-kunden-type">Unternehmensreferenz</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
