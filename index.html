@@ -9,13 +9,27 @@
     content="Senden Sie Ihre Personalanfrage an GALDORA. Wir melden uns schnellstm&#246;glich mit passenden L&#246;sungen f&#252;r Ihre Personalsuche." />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127736288"></script>
+  <!-- Google Consent Mode v2 (Standard: denied bis Einwilligung) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('galdora_consent'); } catch (e) {}
+      var granted = stored === 'granted';
+      gtag('consent', 'default', {
+        'ad_storage': granted ? 'granted' : 'denied',
+        'ad_user_data': granted ? 'granted' : 'denied',
+        'ad_personalization': granted ? 'granted' : 'denied',
+        'analytics_storage': granted ? 'granted' : 'denied',
+        'wait_for_update': 500
+      });
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18127736288"></script>
+  <script>
     gtag('js', new Date());
-
     gtag('config', 'AW-18127736288');
   </script>
 
@@ -1521,6 +1535,8 @@
   </footer>
   <script>
     const WEBHOOK_URL = 'https://lennyys.app.n8n.cloud/webhook/c7f2c55d-c880-42f1-87fb-42244ca44d07';
+    // Google Ads Conversion-Label hier einsetzen (aus Google Ads → Conversions). Leer = Tracking inaktiv.
+    const ADS_CONVERSION_LABEL = '';
 
     document.getElementById('lead-form').addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -1551,6 +1567,11 @@
         });
 
         if (res.ok) {
+          if (ADS_CONVERSION_LABEL && typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18127736288/' + ADS_CONVERSION_LABEL
+            });
+          }
           document.getElementById('lead-form').style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
@@ -1562,6 +1583,68 @@
         btn.textContent = 'Anfrage absenden';
       }
     });
+  </script>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung">
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-text">
+        <strong>Datenschutz &amp; Cookies</strong>
+        <p>Wir setzen Cookies und ähnliche Technologien (Google Ads) ein, um die Wirksamkeit unserer
+          Werbung zu messen &#8211; nur mit Ihrer Einwilligung. Details in unserer
+          <a href="datenschutz.html">Datenschutzerkl&#228;rung</a>.</p>
+      </div>
+      <div class="cookie-banner-actions">
+        <button type="button" class="cookie-btn cookie-btn-decline" id="cookie-decline">Ablehnen</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" id="cookie-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <style>
+    .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: #fff;
+      border-top: 1px solid var(--border); box-shadow: 0 -10px 40px rgba(15, 23, 42, .12);
+      transform: translateY(110%); transition: transform .35s ease; }
+    .cookie-banner.is-visible { transform: translateY(0); }
+    .cookie-banner-inner { max-width: 1200px; margin: 0 auto; padding: 18px 24px; display: flex;
+      align-items: center; gap: 24px; flex-wrap: wrap; }
+    .cookie-banner-text { flex: 1 1 380px; }
+    .cookie-banner-text strong { display: block; color: var(--blue); font-size: 15px; margin-bottom: 4px; }
+    .cookie-banner-text p { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 0; }
+    .cookie-banner-text a { color: var(--blue); font-weight: 600; }
+    .cookie-banner-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cookie-btn { border: 0; border-radius: 3px; padding: 12px 22px; font-weight: 700; font-size: 14px;
+      cursor: pointer; transition: .2s ease; }
+    .cookie-btn-accept { background: var(--blue); color: #fff; }
+    .cookie-btn-accept:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .cookie-btn-decline { background: var(--blue-soft); color: var(--blue); }
+    .cookie-btn-decline:hover { background: #e3e8f4; }
+    @media (max-width: 600px) {
+      .cookie-banner-actions { width: 100%; }
+      .cookie-btn { flex: 1; }
+    }
+  </style>
+  <script>
+    (function () {
+      var banner = document.getElementById('cookie-banner');
+      var stored = null;
+      try { stored = localStorage.getItem('galdora_consent'); } catch (e) {}
+      if (!stored) {
+        setTimeout(function () { banner.classList.add('is-visible'); }, 800);
+      }
+      function setConsent(value) {
+        try { localStorage.setItem('galdora_consent', value); } catch (e) {}
+        var granted = value === 'granted';
+        gtag('consent', 'update', {
+          'ad_storage': granted ? 'granted' : 'denied',
+          'ad_user_data': granted ? 'granted' : 'denied',
+          'ad_personalization': granted ? 'granted' : 'denied',
+          'analytics_storage': granted ? 'granted' : 'denied'
+        });
+        banner.classList.remove('is-visible');
+      }
+      document.getElementById('cookie-accept').addEventListener('click', function () { setConsent('granted'); });
+      document.getElementById('cookie-decline').addEventListener('click', function () { setConsent('denied'); });
+    })();
   </script>
 </body>
 
